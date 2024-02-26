@@ -27,3 +27,15 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/.terraform/
+/.terraform/
+/.terraform/providers/
+/.terraform/providers/registry.terraform.io/
+/.terraform/providers/registry.terraform.io/logicmonitor/
+/.terraform/providers/registry.terraform.io/logicmonitor/logicmonitor/
+/.terraform/providers/registry.terraform.io/logicmonitor/logicmonitor/2.0.6/
+/.terraform/providers/registry.terraform.io/logicmonitor/logicmonitor/2.0.6/linux_amd64/
+/.terraform/providers/registry.terraform.io/logicmonitor/logicmonitor/2.0.6/linux_amd64/CHANGELOG.md
+/.terraform/providers/registry.terraform.io/logicmonitor/logicmonitor/2.0.6/linux_amd64/LICENSE
+/.terraform/providers/registry.terraform.io/logicmonitor/logicmonitor/2.0.6/linux_amd64/README.md
+/.terraform/providers/registry.terraform.io/logicmonitor/logicmonitor/2.0.6/linux_amd64/terraform-provider-logicmonitor_v2.0.6
