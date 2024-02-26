@@ -8,6 +8,11 @@ variable "bwi_pops" {
   default = ["TY001","TH2","LON1","DUB1","MIL1","MAD1","SG1","SG2","LS1","LU1","TYO1"]
 }
 
+variable "team_applies_to" {
+  type = string
+  default = "isTeamNetOpsObservability()"
+}
+
 
 
 
@@ -26,7 +31,7 @@ resource "logicmonitor_device_group" "noobs-devices_by_type" {
   description = "Supergroup for organizing Noob team resources by their types"
   group_type = "Normal"
   name = "Devices by Type"
-  parent_id = 3225 //Team Terraform Groups
+  parent_id = 3249 //Team Terraform Groups/NetOps Observability
   lifecycle {
     ignore_changes = [
       extra
@@ -41,7 +46,7 @@ resource "logicmonitor_device_group" "noobs-devices_by_type" {
         value = "true"
       }
     ]
-    applies_to = "isCollectorDevice()"
+    applies_to = "${var.team_applies_to} && isCollectorDevice()"
     description = "Group for collectors"
     group_type = "Normal"
     name = "Collectors"
@@ -64,7 +69,7 @@ resource "logicmonitor_device_group" "noobs-devices_by_location" {
   description = "Supergroup for organizing Noob team resources by their physical locations"
   group_type = "Normal"
   name = "Devices by Location"
-  parent_id = 3225 //Team Terraform Groups
+  parent_id = 3249 //Team Terraform Groups/NetOps Observability
   lifecycle {
     ignore_changes = [
       extra
@@ -77,7 +82,7 @@ resource "logicmonitor_device_group" "noobs-devices_by_location" {
     for_each = toset(var.regions)
     name = each.value
     description = "${each.value} datacenter"
-    applies_to = "system.displayname =~ \"${each.value}\""
+    applies_to = "${var.team_applies_to} && system.displayname =~ \"${each.value}\""
     parent_id = logicmonitor_device_group.noobs-devices_by_location.id
   }
 
