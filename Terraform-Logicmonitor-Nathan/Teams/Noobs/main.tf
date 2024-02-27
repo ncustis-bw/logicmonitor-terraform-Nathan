@@ -51,6 +51,9 @@ resource "logicmonitor_device_group" "noobs-devices_by_type" {
     group_type = "Normal"
     name = "Collectors"
     parent_id = logicmonitor_device_group.noobs-devices_by_type.id //3229 //Team Terraform Groups/Devices by Type
+    depends_on = [
+      logicmonitor_device_group.noobs-devices_by_type
+    ]
     lifecycle {
       ignore_changes = [
         extra
@@ -78,11 +81,20 @@ resource "logicmonitor_device_group" "noobs-devices_by_location" {
 }
 
 
-  resource "logicmonitor_device_group" "devices_by_region" {
+  resource "logicmonitor_device_group" "noobs-devices_by_region" {
     for_each = toset(var.regions)
     name = each.value
     description = "${each.value} datacenter"
     applies_to = "${var.team_applies_to} && system.displayname =~ \"${each.value}\""
     parent_id = logicmonitor_device_group.noobs-devices_by_location.id
+    depends_on = [
+      logicmonitor_device_group.noobs-devices_by_location
+    ]
+    lifecycle {
+      ignore_changes = [
+        extra,
+        group_type
+      ]
+    }
   }
 

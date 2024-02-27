@@ -39,3 +39,4 @@ bin/
 /.terraform/providers/registry.terraform.io/logicmonitor/logicmonitor/2.0.6/linux_amd64/LICENSE
 /.terraform/providers/registry.terraform.io/logicmonitor/logicmonitor/2.0.6/linux_amd64/README.md
 /.terraform/providers/registry.terraform.io/logicmonitor/logicmonitor/2.0.6/linux_amd64/terraform-provider-logicmonitor_v2.0.6
+/.idea/workspace.xml
