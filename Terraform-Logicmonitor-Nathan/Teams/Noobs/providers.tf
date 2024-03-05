@@ -25,5 +25,13 @@ terraform {
       version = "2.0.6"
     }
   }
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "bw-systems"
+
+    workspaces {
+      name = "logicmonitor-teams-groups"
+    }
+  }
 
 }

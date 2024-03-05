@@ -38,26 +38,26 @@ resource "logicmonitor_device_group" "networking-devices_by_type" {
   }
 }
 
-resource "logicmonitor_device_group" "networking-devices_by_type-collectors" {
-  custom_properties = [
-    {
-      name = "isTerraformManaged"
-      value = "true"
-    }
-  ]
-  applies_to = "${var.team_applies_to} && isCollectorDevice()"
-  description = "Group for collectors"
-  group_type = "Normal"
-  name = "Networking - Collectors"
-  parent_id = logicmonitor_device_group.networking-devices_by_type.id
-  depends_on = [
-    logicmonitor_device_group.networking-devices_by_type]
-  lifecycle {
-    ignore_changes = [
-      extra
+  resource "logicmonitor_device_group" "networking-devices_by_type-collectors" {
+    custom_properties = [
+      {
+        name = "isTerraformManaged"
+        value = "true"
+      }
     ]
+    applies_to = "${var.team_applies_to} && isCollectorDevice()"
+    description = "Group for collectors"
+    group_type = "Normal"
+    name = "Networking - Collectors"
+    parent_id = logicmonitor_device_group.networking-devices_by_type.id
+    depends_on = [
+      logicmonitor_device_group.networking-devices_by_type]
+    lifecycle {
+      ignore_changes = [
+        extra
+      ]
+    }
   }
-}
 
 
 resource "logicmonitor_device_group" "networking-devices_by_location" {
